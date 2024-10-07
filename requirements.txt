@@ -15,7 +15,7 @@ rank-bm25==0.2.2
 seaborn==0.13.2
 protobuf==3.20.1
 # protobuf==4.25.4
-pysqlite3-binary
+pysqlite3-binary # for streamlit to work - https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
 
 # openai==1.42.0
 # langchain_cohere==0.3.0 --> this is the problematic import, check with Jie Yong
