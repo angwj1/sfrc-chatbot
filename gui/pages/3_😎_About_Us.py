@@ -17,11 +17,13 @@ if not check_password():
 # ---------------------------------------------------------------------
 
 # load resources_full.json into a python dict (mapping each filename to its document title)
-folder_path = 'data'
+folder_path = 'gui/st_data'
 filename = 'resources_full.json'
 file_path = os.path.join(folder_path, filename)
 with open(file_path) as f:
-    resource_dictionary  = json.load(f)
+    resource_dictionary  = json.load(f)    
+    
+    
 # convert filename to its document title
 def filename2title(filename):
     for resource in resource_dictionary:

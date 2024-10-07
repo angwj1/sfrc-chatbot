@@ -1,6 +1,7 @@
 __import__('pysqlite3')
 import sys,os
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
 
 import streamlit as st  
 import hmac  
