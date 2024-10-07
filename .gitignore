@@ -28,7 +28,7 @@ output/
 ref/
 gui/image/rag_chatbot_flowchat.key
 code/sfrc-chatbot.ipynb
-README_full.md
+README_old.md
 
 # Streamlit
 .streamlit
