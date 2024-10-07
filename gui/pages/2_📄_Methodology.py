@@ -24,7 +24,7 @@ if not check_password():
 
 st.title("Methodology")
 st.markdown("""
-            Several techniques were used to improve the performance of the Chatbot (i.e. "Improved Chatbot") at different stages - pre-retrieval, retrieval, and post-retrieval. Based on Ragas evaluation, the Improved Chatbot achieved an answer correctness score of 71%, outperforming a standard chatbot by 7%. Two flowcharts, each detailing the techniques adopted in the Improved Chatbot and the standard chatbot, are presented below - the key differences between the chatbots are highlighted in red. The source code and the notebook can be found [here](https://www.github.com).
+            Several techniques were used to improve the performance of the Chatbot (i.e. "Improved Chatbot") at different stages - pre-retrieval, retrieval, and post-retrieval. Based on Ragas evaluation, the Improved Chatbot achieved an answer correctness score of 71%, outperforming a standard chatbot by 7%. Two flowcharts, each detailing the techniques adopted in the Improved Chatbot and the standard chatbot, are presented below - the key differences between the chatbots are highlighted in red. The source code and the notebook can be found [here](https://github.com/angwj1/sfrc-chatbot).
             """)
 
 with st.expander("Techniques used to improve the chatbot performance:: ", expanded=False):
