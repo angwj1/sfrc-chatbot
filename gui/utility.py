@@ -1,7 +1,7 @@
-__import__('pysqlite3')
-import sys,os
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-# https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
+# __import__('pysqlite3')
+# import sys,os
+# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# # https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
 
 import streamlit as st  
 import hmac  
@@ -17,6 +17,7 @@ import os
 import json
 from langchain_openai import ChatOpenAI
 from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv 
 
 
 # """  
@@ -39,10 +40,11 @@ def setup():
     co = cohere.Client()
 
     # load vector database
-    __import__('pysqlite3')
-    import sys,os
-    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-    # https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
+    if not load_dotenv(): # only apply the following code to use pysqlite3 if not running in local machine (i.e. run on streamlit community cloud)
+        __import__('pysqlite3')
+        import sys,os
+        sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+        # https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
     vectordb = Chroma(
         embedding_function=embeddings_model,
         collection_name="semantic_splitter", # one database can have multiple collections
