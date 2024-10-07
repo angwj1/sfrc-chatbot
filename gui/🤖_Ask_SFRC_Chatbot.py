@@ -57,13 +57,13 @@ co = cohere.Client()
 vectordb = Chroma(
     embedding_function=embeddings_model,
     collection_name="semantic_splitter", # one database can have multiple collections
-    persist_directory="output_db/vector_db"
+    persist_directory="gui/st_output/vector_db"
 )
 # Set up vector search 
 vectorstore_retriever = vectordb.as_retriever(search_kwargs={"k": 20})
 
 # load bm25 object
-folder_path = 'output_db/bm25/'
+folder_path = 'gui/st_output/bm25/'
 file_name = 'semantic_bm25'
 file_path = os.path.join(folder_path, file_name)
 with open(file_path, 'rb') as bm25result_file:
@@ -77,7 +77,7 @@ ensemble_retriever = EnsembleRetriever(retrievers=[vectorstore_retriever,
                                         weights=[0.5, 0.5])
 
 # load resources_full.json into a python dict (mapping each filename to its document title)
-folder_path = 'data'
+folder_path = 'gui/st_data'
 filename = 'resources_full.json'
 file_path = os.path.join(folder_path, filename)
 with open(file_path) as f:
