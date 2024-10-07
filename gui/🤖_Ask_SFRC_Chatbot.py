@@ -55,6 +55,10 @@ llm = ChatOpenAI(model='gpt-4o-mini', temperature=0)
 co = cohere.Client()
 
 # load vector database
+__import__('pysqlite3')
+import sys,os
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
 vectordb = Chroma(
     embedding_function=embeddings_model,
     collection_name="semantic_splitter", # one database can have multiple collections
