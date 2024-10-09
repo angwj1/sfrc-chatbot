@@ -81,7 +81,7 @@ if not load_dotenv(override=True): # only apply the following code to use pysqli
     # https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
 vectordb = Chroma(
     embedding_function=embeddings_model,
-    collection_name="semantic_splitter_improved_embeddings", # one database can have multiple collections
+    collection_name="semantic_splitter", # one database can have multiple collections
     persist_directory="gui_v2_improved_gpt_&_embeddings/st_output/vector_db"
 )
 # Set up vector search 
@@ -89,7 +89,7 @@ vectorstore_retriever = vectordb.as_retriever(search_kwargs={"k": 20})
 
 # load bm25 object
 folder_path = 'gui_v2_improved_gpt_&_embeddings/st_output/bm25/'
-file_name = 'semantic_bm25_improved_embeddings'
+file_name = 'semantic_bm25'
 file_path = os.path.join(folder_path, file_name)
 with open(file_path, 'rb') as bm25result_file:
     keyword_retriever = pickle.load(bm25result_file)
