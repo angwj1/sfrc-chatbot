@@ -39,7 +39,9 @@ def setup():
     embeddings_model = OpenAIEmbeddings(
         api_key=os.environ["OPENAI_API_KEY_GOVTECH"],
         openai_api_base="https://litellm.govtext.gov.sg/",
-        default_headers={"user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0"},model='text-embedding-3-large-prd-gcc2-lb'
+        default_headers={"user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0"},
+        # model='text-embedding-3-large-prd-gcc2-lb', 
+        model='text-embedding-3-small-prd-gcc2-lb'
         )
 
     # llm to be used in RAG pipeplines in this notebook
@@ -47,7 +49,8 @@ def setup():
         api_key=os.environ["OPENAI_API_KEY_GOVTECH"],
         openai_api_base="https://litellm.govtext.gov.sg/",
         default_headers={"user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0"},
-        model = "gpt-4o-prd-gcc2-lb",
+        model = "gpt-4o-prd-gcc2-lb", 
+        # model = "gpt-4o-mini-prd-gcc2-lb",
         temperature=0,
         seed=42,
         )
@@ -63,7 +66,7 @@ def setup():
         # https://discuss.streamlit.io/t/issues-with-chroma-and-sqlite/47950/4
     vectordb = Chroma(
         embedding_function=embeddings_model,
-        collection_name="semantic_splitter_improved_embeddings", # one database can have multiple collections
+        collection_name="semantic_splitter", # one database can have multiple collections
         persist_directory="gui_v2_improved_gpt_&_embeddings/st_output/vector_db"
     )
     # Set up vector search 
@@ -71,7 +74,7 @@ def setup():
 
     # load bm25 object
     folder_path = 'gui_v2_improved_gpt_&_embeddings/st_output/bm25/'
-    file_name = 'semantic_bm25_improved_embeddings'
+    file_name = 'semantic_bm25'
     file_path = os.path.join(folder_path, file_name)
     with open(file_path, 'rb') as bm25result_file:
         keyword_retriever = pickle.load(bm25result_file)
@@ -258,6 +261,7 @@ def generate_llm_response_from_conversation(llm, ensemble_retriever, co, full_co
 # main() will only be executed if utility.py is ran (and not imported)    
 def main():
     current_query = "What is αcc'f"
+    # current_query = "sfrc ok in dwall?"
     full_convo_history = [{'role': 'user', 'content': 'hi'}, {'role': 'assistant', 'content': 'Hello! How can I assist you today? Thanks for asking!'}]
     reranked_docs, full_context, response = generate_llm_response_from_conversation(llm, ensemble_retriever, co, full_convo_history, current_query)
     # reranked_docs, full_context, response = generate_llm_response_simple(current_query)
