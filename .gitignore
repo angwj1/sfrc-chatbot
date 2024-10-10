@@ -28,7 +28,7 @@ output/
 ref/
 gui/image/rag_chatbot_flowchat.key
 code/sfrc-chatbot.ipynb
-code/sfrc-chatbot-cleaned_v2_improved_gpt_&_embeddings.ipynb 
+code/sfrc-chatbot-cleaned_v2_improved_gpt_and_embeddings.ipynb 
 README_old.md
 
 # Streamlit
